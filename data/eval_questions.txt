@@ -1,0 +1,52 @@
+# Evaluation questions — Ollama documentation corpus (69 pages, fingerprint defc2a8a766d2c29)
+#
+# Format: question | gold-source pattern
+#
+# Every pattern below was derived by grepping the corpus and verified to match a real heading
+# (`check_questions.py` re-verifies all 12; the first draft of this file had 9 wrong patterns,
+# which is exactly why it is checked rather than trusted).
+#
+# The same 12 questions are also provided in Indonesian below. Running both sets on one corpus
+# is the cross-lingual experiment: the English set should score high, the Indonesian set answers
+# whether the retriever generalises across languages or only matches the corpus's language.
+#
+# Keep this file fixed. Add harder questions as a second file — never rewrite this set, or the
+# numbers already recorded stop being comparable.
+
+# --- English set ---
+
+How do I install Ollama on Linux? | Linux > Install
+How do I install Ollama manually instead of using the install script? | Linux > Manual install
+What are the system requirements for macOS? | macOS > System Requirements
+Where does Ollama store downloaded models? | macOS > Filesystem Requirements
+How do I generate embeddings with Ollama? | Embeddings > Generate embeddings
+How do I generate embeddings for a batch of texts at once? | Embeddings > Generate a batch of embeddings
+What is a Modelfile and what does it contain? | Modelfile Reference
+How do I create a custom model from a Modelfile? | Create a model
+How do I copy an existing model under a new name? | Copy a model
+How do I pull a model from the registry? | Pull a model
+How do I set the context length of a model? | Context length
+How do I make sure my model is loaded onto the GPU? | FAQ > How can I tell if my model was loaded onto the GPU?
+
+# --- Indonesian set (same 12 questions, translated) ---
+# Purpose: measure the cross-lingual penalty on THIS corpus. The earlier corpus gave 0/5 for an
+# Indonesian question against English documents; this set turns that single data point into 12.
+
+Bagaimana cara saya memasang Ollama di Linux? | Linux > Install
+Bagaimana cara memasang Ollama secara manual tanpa skrip install? | Linux > Manual install
+Apa saja persyaratan sistem untuk macOS? | macOS > System Requirements
+Di mana Ollama menyimpan model yang sudah diunduh? | macOS > Filesystem Requirements
+Bagaimana cara membuat embedding dengan Ollama? | Embeddings > Generate embeddings
+Bagaimana cara membuat embedding untuk banyak teks sekaligus? | Embeddings > Generate a batch of embeddings
+Apa itu Modelfile dan apa isinya? | Modelfile Reference
+Bagaimana cara membuat model sendiri dari sebuah Modelfile? | Create a model
+Bagaimana cara menyalin model yang sudah ada dengan nama baru? | Copy a model
+Bagaimana cara menarik model dari registry? | Pull a model
+Bagaimana cara mengatur panjang context sebuah model? | Context length
+Bagaimana cara memastikan model saya dimuat ke GPU? | FAQ > How can I tell if my model was loaded onto the GPU?
+
+# --- Known ambiguity, kept on purpose ---
+# "What is the default port of the Ollama server?" was dropped from the numbered set: the string
+# 11434 lives inside code blocks, so a keyword retriever fails it while a vector retriever can pass
+# it. That asymmetry was a recorded finding on the previous corpus; keep it as a *separate*
+# question if you want to re-test it, not inside the comparable set.

@@ -1,0 +1,19 @@
+# Netlify config for the RAG demo.
+#
+# Layout:
+#   public/             -> the static demo page (served from the CDN: no cold start)
+#   netlify/functions/  -> the proxy that talks to the Python RAG API
+#
+# Why a proxy: the browser must never hold the LLM key. The function holds it, on the server.
+# The Python API can live anywhere (Render free tier, a VPS, a GPU box) — only RAG_API_URL changes.
+
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Functions are routed by `config.path` inside the .mjs file itself (see netlify/functions/ask.mjs),
+# so no redirect rules are needed here.
+
+[dev]
+  command = "netlify dev"
+  port = 8888

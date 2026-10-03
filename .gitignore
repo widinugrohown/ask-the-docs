@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets — never committed
+.env
+
+# Raw corpus: rebuildable from the URL in ingest.py, and excluded from the image
+data/llms-full.txt

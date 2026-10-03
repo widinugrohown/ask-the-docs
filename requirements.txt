@@ -1,0 +1,10 @@
+# Dependencies for the Hugging Face Space (Gradio SDK, CPU basic).
+# CPU-only torch wheel: the free tier has no GPU and this app never needs one.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch
+sentence-transformers==6.1.0
+openai==3.19.2
+numpy
+gradio
+pypdf

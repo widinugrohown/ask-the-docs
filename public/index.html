@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Measured RAG Assistant — demo</title>
+<style>
+  :root{--ink:#111;--muted:#555;--line:#e3e3e3;--accent:#0b5fff;--soft:#f7f8fa}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 70px}
+  h1{font-size:24px;margin:0 0 4px;letter-spacing:-.2px}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 22px}
+  form{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+  input[type=text],input[type=password]{flex:1 1 340px;padding:10px 12px;font-size:16px;
+    border:1px solid var(--line);border-radius:8px}
+  button{padding:10px 18px;font-size:16px;border:0;border-radius:8px;background:var(--ink);color:#fff;cursor:pointer}
+  button:disabled{opacity:.5;cursor:default}
+  .row{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px;margin:0 0 18px}
+  pre{white-space:pre-wrap;background:var(--soft);border:1px solid var(--line);border-radius:8px;
+    padding:14px;margin:0 0 14px;font-size:15px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:0 0 10px}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}
+  th{background:var(--soft);font-weight:600}
+  td.d{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .meta{color:var(--muted);font-size:13px;margin:0 0 22px}
+  .warn{border:1px solid #f0dcc0;background:#fffaf2;border-radius:8px;padding:12px 14px;
+    font-size:14px;color:#5a4405;margin:18px 0 0}
+  .err{border-left:3px solid #b3261e;background:#fdf4f3;padding:10px 14px;border-radius:0 8px 8px 0;
+    font-size:15px;margin:0 0 14px}
+  .note{font-size:14px;color:var(--muted);margin:10px 0 0}
+  footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:13.5px;color:var(--muted)}
+  code{background:var(--soft);padding:1px 5px;border-radius:4px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>A Measured RAG Assistant</h1>
+<p class="sub">Retrieval-augmented QA over the Ollama documentation. Every answer comes only from
+retrieved chunks and names the section it came from.</p>
+
+<div id="gate" hidden>
+  <form id="gateform">
+    <input type="password" id="pw" placeholder="Demo password" autocomplete="current-password" required>
+    <button>Enter</button>
+  </form>
+  <p class="note">A password keeps this public endpoint from being used as a free LLM gateway.</p>
+</div>
+
+<div id="app" hidden>
+  <form id="askform">
+    <input type="text" id="q" placeholder="How do I install Ollama on Linux?" required>
+    <button id="go">Ask</button>
+  </form>
+  <div class="row">
+    <label for="k">Chunks sent as context (k):</label>
+    <input type="range" id="k" min="1" max="10" value="5" style="flex:0 0 160px">
+    <span id="kv">5</span>
+  </div>
+
+  <div id="err"></div>
+  <pre id="answer">The answer appears here.</pre>
+
+  <div id="sources"></div>
+  <p class="meta" id="usage"></p>
+</div>
+
+<div class="warn">
+  <b>What this demo does not prove.</b> A citation shows a source was <i>named</i>, not that the
+  answer is right. The corpus is public documentation, so a correct answer can come from the
+  model's memory instead of from retrieval. The measured limits of this system — including a
+  cross-lingual retrieval gap of 0/5 — are written up in the project README.
+</div>
+
+<footer>
+  Built from raw parts (no LangChain): heading-aware chunking, a local embedding index, one
+  provider-agnostic LLM client. FastAPI backend, containerised with Docker, static page on Netlify.
+</footer>
+
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let demoKey = sessionStorage.getItem("demoKey") || "";
+let passwordRequired = false;
+
+$("k").addEventListener("input", () => ($("kv").textContent = $("k").value));
+
+function renderError(msg) {
+  $("err").innerHTML = `<div class="err">${msg}</div>`;
+}
+
+async function call(path, options = {}) {
+  const headers = Object.assign(
+    { "content-type": "application/json" },
+    demoKey ? { "x-demo-key": demoKey } : {},
+    options.headers || {},
+  );
+  return fetch(path, Object.assign({}, options, { headers }));
+}
+
+(async function init() {
+  try {
+    const r = await call("/api/health");
+    const h = await r.json();
+    passwordRequired = Boolean(h.password_required);
+    if (!h.backend_configured) {
+      $("gate").hidden = $("app").hidden = true;
+      renderError(
+        "Backend not configured yet. The page is live; set <code>RAG_API_URL</code> in the " +
+        "Netlify site settings to point it at the RAG API.",
+      );
+      return;
+    }
+  } catch (e) {
+    renderError("Cannot reach the demo API: " + e);
+    return;
+  }
+  if (passwordRequired && !demoKey) $("gate").hidden = false;
+  else $("app").hidden = false;
+})();
+
+$("gateform").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  demoKey = $("pw").value;
+  sessionStorage.setItem("demoKey", demoKey);
+  const r = await call("/api/health");
+  if (r.status === 401 || !r.ok) {
+    demoKey = "";
+    sessionStorage.removeItem("demoKey");
+    renderError("Wrong password.");
+    return;
+  }
+  $("gate").hidden = true;
+  $("app").hidden = false;
+  $("err").innerHTML = "";
+});
+
+$("askform").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const question = $("q").value.trim();
+  if (question.length < 3) return;
+
+  $("go").disabled = true;
+  $("err").innerHTML = "";
+  $("answer").textContent = "Retrieving and answering... (typically a few seconds)";
+  $("sources").innerHTML = "";
+  $("usage").textContent = "";
+
+  const t0 = performance.now();
+  try {
+    const r = await call("/api/ask", { method: "POST", body: JSON.stringify({ q: question, k: Number($("k").value) }) });
+    const d = await r.json();
+
+    if (!r.ok) {
+      $("answer").textContent = "";
+      renderError(`Request failed (${r.status}): ${d.error || ""} ${d.detail || ""}`);
+      return;
+    }
+
+    if (!d.answer || !d.answer.trim()) {
+      $("answer").textContent = "";
+      renderError(
+        "The model returned an <b>empty answer</b> with a successful call — its token budget was " +
+        "spent on hidden reasoning. A known failure mode at low <code>max_tokens</code>.",
+      );
+    } else {
+      $("answer").textContent = d.answer;
+    }
+
+    const src = d.sources || [];
+    if (src.length) {
+      const rows = src
+        .map((s, i) => `<tr><td>${i + 1}</td><td>${s.heading}</td><td class="d">${Number(s.distance).toFixed(4)}</td></tr>`)
+        .join("");
+      $("sources").innerHTML =
+        `<table><tr><th>#</th><th>Heading (sent as context)</th><th>Distance</th></tr>${rows}</table>` +
+        `<p class="note">Distance: lower is closer. The heading list is what the model was given — ` +
+        `duplicate headings mean k chunks covered fewer distinct sections than k suggests.</p>`;
+    }
+
+    const u = d.usage || {};
+    const secs = ((performance.now() - t0) / 1000).toFixed(1);
+    $("usage").textContent =
+      `${secs} s end to end · prompt ${u.prompt_tokens ?? "?"} tokens · completion ${u.completion_tokens ?? "?"} tokens` +
+      (u.cached_tokens ? ` · ${u.cached_tokens} from cache` : "");
+  } catch (e) {
+    $("answer").textContent = "";
+    renderError("Request failed: " + e);
+  } finally {
+    $("go").disabled = false;
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Space requirements (Hugging Face Spaces, CPU Basic).
+# Deliberately CPU-only: the free tier has no GPU, and the demo never needs one —
+# embedding 490 short chunks on CPU is a one-time cost per cold start.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+sentence-transformers==6.1.0
+openai==3.19.2
+streamlit
+numpy

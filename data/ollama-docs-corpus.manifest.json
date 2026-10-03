@@ -1,0 +1,423 @@
+{
+ "fingerprint": "defc2a8a766d2c29",
+ "pages": 69,
+ "bytes": 330164,
+ "source": "https://docs.ollama.com/llms.txt (69 per-page .md files, nav boilerplate stripped)",
+ "fetched": "2026-10-03",
+ "offsets": [
+  {
+   "slug": "index",
+   "url": "https://docs.ollama.com/index.md",
+   "start": 0,
+   "bytes": 1486
+  },
+  {
+   "slug": "quickstart",
+   "url": "https://docs.ollama.com/quickstart.md",
+   "start": 1480,
+   "bytes": 9085
+  },
+  {
+   "slug": "cloud",
+   "url": "https://docs.ollama.com/cloud.md",
+   "start": 10559,
+   "bytes": 2604
+  },
+  {
+   "slug": "capabilities--streaming",
+   "url": "https://docs.ollama.com/capabilities/streaming.md",
+   "start": 13163,
+   "bytes": 3448
+  },
+  {
+   "slug": "capabilities--thinking",
+   "url": "https://docs.ollama.com/capabilities/thinking.md",
+   "start": 16609,
+   "bytes": 4790
+  },
+  {
+   "slug": "capabilities--structured-outputs",
+   "url": "https://docs.ollama.com/capabilities/structured-outputs.md",
+   "start": 21397,
+   "bytes": 5227
+  },
+  {
+   "slug": "capabilities--decision",
+   "url": "https://docs.ollama.com/capabilities/decision.md",
+   "start": 26624,
+   "bytes": 5102
+  },
+  {
+   "slug": "capabilities--vision",
+   "url": "https://docs.ollama.com/capabilities/vision.md",
+   "start": 31715,
+   "bytes": 2101
+  },
+  {
+   "slug": "capabilities--embeddings",
+   "url": "https://docs.ollama.com/capabilities/embeddings.md",
+   "start": 33816,
+   "bytes": 3278
+  },
+  {
+   "slug": "capabilities--tool-calling",
+   "url": "https://docs.ollama.com/capabilities/tool-calling.md",
+   "start": 37088,
+   "bytes": 23037
+  },
+  {
+   "slug": "capabilities--web-search",
+   "url": "https://docs.ollama.com/capabilities/web-search.md",
+   "start": 60104,
+   "bytes": 12221
+  },
+  {
+   "slug": "cli",
+   "url": "https://docs.ollama.com/cli.md",
+   "start": 72317,
+   "bytes": 1944
+  },
+  {
+   "slug": "modelfile",
+   "url": "https://docs.ollama.com/modelfile.md",
+   "start": 74261,
+   "bytes": 9122
+  },
+  {
+   "slug": "context-length",
+   "url": "https://docs.ollama.com/context-length.md",
+   "start": 83383,
+   "bytes": 1668
+  },
+  {
+   "slug": "linux",
+   "url": "https://docs.ollama.com/linux.md",
+   "start": 85051,
+   "bytes": 4544
+  },
+  {
+   "slug": "macos",
+   "url": "https://docs.ollama.com/macos.md",
+   "start": 89595,
+   "bytes": 1910
+  },
+  {
+   "slug": "windows",
+   "url": "https://docs.ollama.com/windows.md",
+   "start": 91505,
+   "bytes": 4788
+  },
+  {
+   "slug": "docker",
+   "url": "https://docs.ollama.com/docker.md",
+   "start": 96293,
+   "bytes": 2872
+  },
+  {
+   "slug": "import",
+   "url": "https://docs.ollama.com/import.md",
+   "start": 99165,
+   "bytes": 3373
+  },
+  {
+   "slug": "faq",
+   "url": "https://docs.ollama.com/faq.md",
+   "start": 102538,
+   "bytes": 18511
+  },
+  {
+   "slug": "gpu",
+   "url": "https://docs.ollama.com/gpu.md",
+   "start": 121047,
+   "bytes": 8806
+  },
+  {
+   "slug": "troubleshooting",
+   "url": "https://docs.ollama.com/troubleshooting.md",
+   "start": 129853,
+   "bytes": 8142
+  },
+  {
+   "slug": "integrations--index",
+   "url": "https://docs.ollama.com/integrations/index.md",
+   "start": 137991,
+   "bytes": 3560
+  },
+  {
+   "slug": "integrations--claude-desktop",
+   "url": "https://docs.ollama.com/integrations/claude-desktop.md",
+   "start": 141551,
+   "bytes": 1480
+  },
+  {
+   "slug": "integrations--openclaw",
+   "url": "https://docs.ollama.com/integrations/openclaw.md",
+   "start": 143029,
+   "bytes": 3119
+  },
+  {
+   "slug": "integrations--hermes",
+   "url": "https://docs.ollama.com/integrations/hermes.md",
+   "start": 146126,
+   "bytes": 3361
+  },
+  {
+   "slug": "integrations--hermes-desktop",
+   "url": "https://docs.ollama.com/integrations/hermes-desktop.md",
+   "start": 149457,
+   "bytes": 1546
+  },
+  {
+   "slug": "integrations--claude-code",
+   "url": "https://docs.ollama.com/integrations/claude-code.md",
+   "start": 151003,
+   "bytes": 7149
+  },
+  {
+   "slug": "integrations--opencode",
+   "url": "https://docs.ollama.com/integrations/opencode.md",
+   "start": 158152,
+   "bytes": 4327
+  },
+  {
+   "slug": "integrations--deepseek-harness",
+   "url": "https://docs.ollama.com/integrations/deepseek-harness.md",
+   "start": 162479,
+   "bytes": 1476
+  },
+  {
+   "slug": "integrations--cline-cli",
+   "url": "https://docs.ollama.com/integrations/cline-cli.md",
+   "start": 163955,
+   "bytes": 2472
+  },
+  {
+   "slug": "integrations--codex",
+   "url": "https://docs.ollama.com/integrations/codex.md",
+   "start": 166427,
+   "bytes": 1755
+  },
+  {
+   "slug": "integrations--chatgpt",
+   "url": "https://docs.ollama.com/integrations/chatgpt.md",
+   "start": 168182,
+   "bytes": 1813
+  },
+  {
+   "slug": "integrations--copilot-cli",
+   "url": "https://docs.ollama.com/integrations/copilot-cli.md",
+   "start": 169995,
+   "bytes": 2484
+  },
+  {
+   "slug": "integrations--droid",
+   "url": "https://docs.ollama.com/integrations/droid.md",
+   "start": 172479,
+   "bytes": 2053
+  },
+  {
+   "slug": "integrations--goose",
+   "url": "https://docs.ollama.com/integrations/goose.md",
+   "start": 174532,
+   "bytes": 1661
+  },
+  {
+   "slug": "integrations--oh-my-pi",
+   "url": "https://docs.ollama.com/integrations/oh-my-pi.md",
+   "start": 176191,
+   "bytes": 999
+  },
+  {
+   "slug": "integrations--pi",
+   "url": "https://docs.ollama.com/integrations/pi.md",
+   "start": 177190,
+   "bytes": 2788
+  },
+  {
+   "slug": "integrations--pool",
+   "url": "https://docs.ollama.com/integrations/pool.md",
+   "start": 179976,
+   "bytes": 1100
+  },
+  {
+   "slug": "integrations--vscode",
+   "url": "https://docs.ollama.com/integrations/vscode.md",
+   "start": 181076,
+   "bytes": 1917
+  },
+  {
+   "slug": "integrations--cline",
+   "url": "https://docs.ollama.com/integrations/cline.md",
+   "start": 182993,
+   "bytes": 1195
+  },
+  {
+   "slug": "integrations--jetbrains",
+   "url": "https://docs.ollama.com/integrations/jetbrains.md",
+   "start": 184188,
+   "bytes": 1814
+  },
+  {
+   "slug": "integrations--roo-code",
+   "url": "https://docs.ollama.com/integrations/roo-code.md",
+   "start": 186002,
+   "bytes": 1166
+  },
+  {
+   "slug": "integrations--xcode",
+   "url": "https://docs.ollama.com/integrations/xcode.md",
+   "start": 187168,
+   "bytes": 1723
+  },
+  {
+   "slug": "integrations--zed",
+   "url": "https://docs.ollama.com/integrations/zed.md",
+   "start": 188891,
+   "bytes": 1339
+  },
+  {
+   "slug": "integrations--onyx",
+   "url": "https://docs.ollama.com/integrations/onyx.md",
+   "start": 190228,
+   "bytes": 2484
+  },
+  {
+   "slug": "integrations--n8n",
+   "url": "https://docs.ollama.com/integrations/n8n.md",
+   "start": 192712,
+   "bytes": 2589
+  },
+  {
+   "slug": "integrations--marimo",
+   "url": "https://docs.ollama.com/integrations/marimo.md",
+   "start": 195301,
+   "bytes": 2774
+  },
+  {
+   "slug": "integrations--nemoclaw",
+   "url": "https://docs.ollama.com/integrations/nemoclaw.md",
+   "start": 198075,
+   "bytes": 1920
+  },
+  {
+   "slug": "api--introduction",
+   "url": "https://docs.ollama.com/api/introduction.md",
+   "start": 199983,
+   "bytes": 2499
+  },
+  {
+   "slug": "api--authentication",
+   "url": "https://docs.ollama.com/api/authentication.md",
+   "start": 202482,
+   "bytes": 1666
+  },
+  {
+   "slug": "api--streaming",
+   "url": "https://docs.ollama.com/api/streaming.md",
+   "start": 204148,
+   "bytes": 1644
+  },
+  {
+   "slug": "api--usage",
+   "url": "https://docs.ollama.com/api/usage.md",
+   "start": 205792,
+   "bytes": 1394
+  },
+  {
+   "slug": "api--errors",
+   "url": "https://docs.ollama.com/api/errors.md",
+   "start": 207186,
+   "bytes": 1529
+  },
+  {
+   "slug": "api--openai-compatibility",
+   "url": "https://docs.ollama.com/api/openai-compatibility.md",
+   "start": 208715,
+   "bytes": 25220
+  },
+  {
+   "slug": "api--anthropic-compatibility",
+   "url": "https://docs.ollama.com/api/anthropic-compatibility.md",
+   "start": 233935,
+   "bytes": 11212
+  },
+  {
+   "slug": "api--generate",
+   "url": "https://docs.ollama.com/api/generate.md",
+   "start": 245147,
+   "bytes": 17240
+  },
+  {
+   "slug": "api--chat",
+   "url": "https://docs.ollama.com/api/chat.md",
+   "start": 262387,
+   "bytes": 20357
+  },
+  {
+   "slug": "api--embed",
+   "url": "https://docs.ollama.com/api/embed.md",
+   "start": 282744,
+   "bytes": 5520
+  },
+  {
+   "slug": "api--systemone",
+   "url": "https://docs.ollama.com/api/systemone.md",
+   "start": 288264,
+   "bytes": 12925
+  },
+  {
+   "slug": "api--tags",
+   "url": "https://docs.ollama.com/api/tags.md",
+   "start": 301187,
+   "bytes": 3367
+  },
+  {
+   "slug": "api--ps",
+   "url": "https://docs.ollama.com/api/ps.md",
+   "start": 304554,
+   "bytes": 2712
+  },
+  {
+   "slug": "api-reference--show-model-details",
+   "url": "https://docs.ollama.com/api-reference/show-model-details.md",
+   "start": 307266,
+   "bytes": 7507
+  },
+  {
+   "slug": "api--create",
+   "url": "https://docs.ollama.com/api/create.md",
+   "start": 314773,
+   "bytes": 6348
+  },
+  {
+   "slug": "api--copy",
+   "url": "https://docs.ollama.com/api/copy.md",
+   "start": 321121,
+   "bytes": 1391
+  },
+  {
+   "slug": "api--pull",
+   "url": "https://docs.ollama.com/api/pull.md",
+   "start": 322512,
+   "bytes": 2557
+  },
+  {
+   "slug": "api--push",
+   "url": "https://docs.ollama.com/api/push.md",
+   "start": 325069,
+   "bytes": 2600
+  },
+  {
+   "slug": "api--delete",
+   "url": "https://docs.ollama.com/api/delete.md",
+   "start": 327669,
+   "bytes": 1193
+  },
+  {
+   "slug": "api-reference--get-version",
+   "url": "https://docs.ollama.com/api-reference/get-version.md",
+   "start": 328862,
+   "bytes": 1160
+  }
+ ]
+}
